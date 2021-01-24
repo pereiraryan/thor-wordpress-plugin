@@ -48,9 +48,10 @@ body {
   position: absolute;
   font-family: "Lato", sans-serif;
   font-weight: 300;
-  font-size: 80px;
+  font-size: 45px;
   color: #B8B8B8;
   bottom: 0;
+  top: 150px;
   left: 35px;
   opacity: 0;
   transform: translateX(150px);
@@ -63,6 +64,7 @@ body {
   font-weight: 300;
   font-size: 28px;
   color: #d2d2d2;
+  top: 100px;
   bottom: 0;
   left: 35px;
   -webkit-animation: title-appear 1s ease-out 500ms forwards;
@@ -79,7 +81,9 @@ body {
   -webkit-animation: weather-icon-move 5s ease-in-out infinite;
           animation: weather-icon-move 5s ease-in-out infinite;
 }
-
+h1 > span {
+  font-size: 45px;
+}
 .mumbai {
   background: #FFCD41;
   border-radius: 50%;
@@ -251,86 +255,99 @@ body {
 </div>
 <script>
 
+RunAllapi();
+function RunAllapi() {
+  mumbaiApi();
+  delhiApi();
+  bengalurApi();
+  kolkataApi();
+  chennaiApi();
+}
 function mumbaiApi () {
     const mum_request = new XMLHttpRequest();
-    mum_request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=19.0760&lon=72.8777&exclude=current,hourly,minutely,alerts&units=Celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
+    mum_request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=19.0760&lon=72.8777&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
     mum_request.responseType = 'json';
     
     mum_request.onload = function() {
       if(mum_request.status === 200) {
     
-        let mum_daily_temp = mum_request.response.daily[0].temp.day;
-        console.log(mum_daily_temp);   
-        let set = document.getElementById("mum_daily_temp").innerHTML=mum_daily_temp;
+        let mum_daily_temp_day1 = mum_request.response.daily[0].temp.day;
+        console.log(mum_daily_temp_day1);   
+        let set = document.getElementById("mum_daily_temp").innerHTML=mum_daily_temp_day1;
       } else {
         console.log('Network request failed with response ' + mum_request.status + ': ' + mum_request.statusText)
       }
     };
+    mum_request.send();
 }
 
 function delhiApi () {
-    const request = new XMLHttpRequest();
-    request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=28.70410&lon=77.1025&exclude=current,hourly,minutely,alerts&units=Celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
-    request.responseType = 'json';
+    const del_request = new XMLHttpRequest();
+    del_request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=28.70410&lon=77.1025&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
+    del_request.responseType = 'json';
     
-    request.onload = function() {
-      if(request.status === 200) {
+    del_request.onload = function() {
+      if(del_request.status === 200) {
     
-        let del_daily_temp = request.response.daily[0].temp.day;
+        let del_daily_temp_day1 = del_request.response.daily[0].temp.day;
         console.log(del_daily_temp);
-        document.getElementById("del_daily_temp").innerHTML=del_daily_temp;   
+        document.getElementById("del_daily_temp").innerHTML=del_daily_temp_day1;   
       } else {
-        console.log('Network request failed with response ' + request.status + ': ' + request.statusText)
+        console.log('Network request failed with response ' + del_request.status + ': ' + del_request.statusText)
       }
     };
+    del_request.send();
 }
 function bengalurApi () {
-    const request = new XMLHttpRequest();
-    request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=12.9716&lon=77.5946&exclude=current,hourly,minutely,alerts&units=Celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
-    request.responseType = 'json';
+    const ben_request = new XMLHttpRequest();
+    ben_request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=12.9716&lon=77.5946&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
+    ben_request.responseType = 'json';
     
-    request.onload = function() {
-      if(request.status === 200) {
+    ben_request.onload = function() {
+      if(ben_request.status === 200) {
     
-        let beng_daily_temp = request.response.daily[0].temp.day;
+        let beng_daily_temp_day1 = ben_request.response.daily[0].temp.day;
         console.log(beng_daily_temp);
-        document.getElementById("beng_daily_temp").innerHTML=beng_daily_temp;   
+        document.getElementById("beng_daily_temp").innerHTML=beng_daily_temp_day1;   
       } else {
-        console.log('Network request failed with response ' + request.status + ': ' + request.statusText)
+        console.log('Network request failed with response ' + ben_request.status + ': ' + ben_request.statusText)
       }
     };
+    ben_request.send();
 }
 function kolkataApi () {
-    const request = new XMLHttpRequest();
-    request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=22.5726&lon=88.3639&exclude=current,hourly,minutely,alerts&units=Celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
-    request.responseType = 'json';
+    const kol_request = new XMLHttpRequest();
+    kol_request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=22.5726&lon=88.3639&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
+    kol_request.responseType = 'json';
     
-    request.onload = function() {
-      if(request.status === 200) {
+    kol_request.onload = function() {
+      if(kol_request.status === 200) {
     
-        let kolkata_daily_temp = request.response.daily[0].temp.day;
+        let kolkata_daily_temp_day1 = kol_request.response.daily[0].temp.day;
         console.log(kolkata_daily_temp);
-        document.getElementById("kolkata_daily_temp").innerHTML=kolkata_daily_temp;   
+        document.getElementById("kolkata_daily_temp").innerHTML=kolkata_daily_temp_day1;   
       } else {
-        console.log('Network request failed with response ' + request.status + ': ' + request.statusText)
+        console.log('Network request failed with response ' + kol_request.status + ': ' + kol_request.statusText)
       }
     };
+    kol_request.send();
 }
 function chennaiApi () {
-    const request = new XMLHttpRequest();
-    request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=13.0827&lon=80.2707&exclude=current,hourly,minutely,alerts&units=Celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
-    request.responseType = 'json';
+    const chen_request = new XMLHttpRequest();
+    chen_request.open('GET', 'https://api.openweathermap.org/data/2.5/onecall?lat=13.0827&lon=80.2707&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a');
+    chen_request.responseType = 'json';
     
-    request.onload = function() {
-      if(request.status === 200) {
+    chen_request.onload = function() {
+      if(chen_request.status === 200) {
     
-        let chennai_daily_temp = request.response.daily[0].temp.day;
+        let chennai_daily_temp_day1 = chen_request.response.daily[0].temp.day;
         console.log(chennai_daily_temp); 
-        document.getElementById("chennai_daily_temp").innerHTML=chennai_daily_temp;  
+        document.getElementById("chennai_daily_temp").innerHTML=chennai_daily_temp_day1;  
       } else {
-        console.log('Network request failed with response ' + request.status + ': ' + request.statusText)
+        console.log('Network request failed with response ' + chen_request.status + ': ' + chen_request.statusText)
       }
     };
+    chen_request.send();
 }
 </script>
 <?php
