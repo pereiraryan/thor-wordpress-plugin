@@ -81,6 +81,11 @@ body {
   -webkit-animation: weather-icon-move 5s ease-in-out infinite;
           animation: weather-icon-move 5s ease-in-out infinite;
 }
+details {
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+}
 h1 > span {
   font-size: 45px;
 }
@@ -231,6 +236,16 @@ h1 > span {
         <div class="weather-icon mumbai"></div>
         <h1><span id="mum_daily_temp"></span>º</h1>
         <p>Mumbai</p>
+        <details>
+          <summary>Forcast</summary>
+          <div>Monday <span id="mum_monday"> </span></div>
+          <div>Tuesday<span id="mum_tue"> </span></div>
+          <div>Wednesday<span id="mum_wed"> </span></div>
+          <div>Thursday<span id="mum_thu"> </span></div>
+          <div>Friday <span id="mum_fri"></span></div>
+          <div>Saturday<span id="mum_sat"></span></div>
+          <div>Sunday <span id="mum_sun"></span></div>
+        </details>
     </div>
     <div class="weather-card chennai-card">
         <div class="weather-icon mumbai"></div>
@@ -274,6 +289,24 @@ function mumbaiApi () {
         let mum_daily_temp_day1 = mum_request.response.daily[0].temp.day;
         console.log(mum_daily_temp_day1);   
         let set = document.getElementById("mum_daily_temp").innerHTML=mum_daily_temp_day1;
+
+        //Lame code 
+        let mum_daily_temp_monday = mum_request.response.daily[0].temp.day;
+        let set1 = document.getElementById("mum_monday").innerHTML=mum_daily_temp_monday;
+        let mum_daily_temp_tue = mum_request.response.daily[1].temp.day;
+        let set2 = document.getElementById("mum_tue").innerHTML=mum_daily_temp_tue;
+        let mum_daily_temp_wed = mum_request.response.daily[2].temp.day;
+        let set3 = document.getElementById("mum_wed").innerHTML=mum_daily_temp_wed;
+        let mum_daily_temp_thu = mum_request.response.daily[3].temp.day;
+        let set4 = document.getElementById("mum_thu").innerHTML=mum_daily_temp_thu;
+        let mum_daily_temp_fri = mum_request.response.daily[4].temp.day;
+        let set5 = document.getElementById("mum_fri").innerHTML=mum_daily_temp_fri;
+        let mum_daily_temp_sat = mum_request.response.daily[5].temp.day;
+        let set6 = document.getElementById("mum_sat").innerHTML=mum_daily_temp_sat;
+        let mum_daily_temp_sun = mum_request.response.daily[6].temp.day;
+        let set7 = document.getElementById("mum_sun").innerHTML=mum_daily_temp_sun;
+        
+
       } else {
         console.log('Network request failed with response ' + mum_request.status + ': ' + mum_request.statusText)
       }
