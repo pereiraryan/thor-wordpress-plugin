@@ -255,6 +255,10 @@ get_header(); ?>
     }
   }
 </style>
+<header id="mumbai_header">
+</header>
+<section class="widget">
+</section>
 
 <section class="container">
 
@@ -296,7 +300,46 @@ get_header(); ?>
     </div>
   </div>
 </section>
+
 <script>
+  const header = document.querySelector('#mumbai_header');
+const section = document.querySelector('.widget');
+let requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=19.0760&lon=72.8777&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
+    let request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'text';
+    request.send();
+
+    request.onload = function() {
+      const mumbai_widget = request.response;
+      const bombay = JSON.parse(mumbai_widget);
+      populateTodaywidget(bombay);
+      populatewidget(bombay);
+    }
+function populateTodaywidget(jsonObj) {
+  const myH1 = document.createElement('h1');
+      myH1.textContent = jsonObj['timezone'];
+      header.appendChild(myH1);
+
+      const myPara = document.createElement('p');
+      myPara.textContent = 'timezone_offset: ' + jsonObj['timezone_offset'] + ' // timezone: ' + jsonObj['timezone'];
+      header.appendChild(myPara);
+}
+function populatewidget(jsonObj) {
+  const mumbai_weekly = jsonObj['daily'];
+
+      for(let i = 0; i < mumbai_weekly.length; i++) {
+        const myArticle = document.createElement('article');
+        const myH2 = document.createElement('h2');
+
+        myH2.textContent = mumbai_weekly[i].temp.day;
+        console.log(mumbai_weekly);
+        myArticle.appendChild(myH2);
+        section.appendChild(myArticle);
+      }
+
+}
+
   RunAllapi();
 
   function RunAllapi() {
@@ -310,7 +353,7 @@ get_header(); ?>
   function mumbaiApi() {
     const mum_request = new XMLHttpRequest();
     mum_request.open('GET',
-      'https://api.openweathermap.org/data/2.5/onecall?lat=19.0760&lon=72.8777&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a'
+      'https://api.openweathermap.org/data/2.5/onecall?lat=19.0760&lon=72.8777&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a'
       );
     mum_request.responseType = 'json';
 
@@ -348,7 +391,7 @@ get_header(); ?>
   function delhiApi() {
     const del_request = new XMLHttpRequest();
     del_request.open('GET',
-      'https://api.openweathermap.org/data/2.5/onecall?lat=28.70410&lon=77.1025&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a'
+      'https://api.openweathermap.org/data/2.5/onecall?lat=28.70410&lon=77.1025&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a'
       );
     del_request.responseType = 'json';
 
@@ -368,7 +411,7 @@ get_header(); ?>
   function bengalurApi() {
     const ben_request = new XMLHttpRequest();
     ben_request.open('GET',
-      'https://api.openweathermap.org/data/2.5/onecall?lat=12.9716&lon=77.5946&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a'
+      'https://api.openweathermap.org/data/2.5/onecall?lat=12.9716&lon=77.5946&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a'
       );
     ben_request.responseType = 'json';
 
@@ -388,7 +431,7 @@ get_header(); ?>
   function kolkataApi() {
     const kol_request = new XMLHttpRequest();
     kol_request.open('GET',
-      'https://api.openweathermap.org/data/2.5/onecall?lat=22.5726&lon=88.3639&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a'
+      'https://api.openweathermap.org/data/2.5/onecall?lat=22.5726&lon=88.3639&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a'
       );
     kol_request.responseType = 'json';
 
@@ -408,7 +451,7 @@ get_header(); ?>
   function chennaiApi() {
     const chen_request = new XMLHttpRequest();
     chen_request.open('GET',
-      'https://api.openweathermap.org/data/2.5/onecall?lat=13.0827&lon=80.2707&exclude=current,hourly,minutely,alerts&units=celsius&appid=8ab4ba3378ee2851102d5840b08d4c7a'
+      'https://api.openweathermap.org/data/2.5/onecall?lat=13.0827&lon=80.2707&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a'
       );
     chen_request.responseType = 'json';
 
