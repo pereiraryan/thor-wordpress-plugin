@@ -298,11 +298,19 @@ get_header(); ?>
       <h1><span id="del_daily_temp"></span>º</h1>
       <p>Delhi</p>
     </div>
+    <div id="delhi_city" class="weather-card delhi-card">
+      <div class="weather-icon delhi"></div>
+      <h1><span id="del_daily_temp"></span>º</h1>
+      <p>Refactored Delhi</p>
+      <details id="delhi_city_week">
+        <summary>Forcast</summary>
+      </details>
+    </div>
   </div>
 </section>
 
 <script>
-  const header = document.querySelector('#mumbai_header');
+const header = document.querySelector('#mumbai_header');
 const section = document.querySelector('.widget');
 let requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=19.0760&lon=72.8777&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
     let request = new XMLHttpRequest();
@@ -333,11 +341,34 @@ function populatewidget(jsonObj) {
         const myH2 = document.createElement('h2');
 
         myH2.textContent = mumbai_weekly[i].temp.day;
-        console.log(mumbai_weekly);
         myArticle.appendChild(myH2);
         section.appendChild(myArticle);
       }
 
+}
+
+//Delhi refactored
+const delhi_block = document.querySelector('#delhi_city_week');
+let delhi_requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=28.70410&lon=77.1025&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
+    let del_request = new XMLHttpRequest();
+    del_request.open('GET', delhi_requestURL);
+    del_request.responseType = 'text';
+    del_request.send();
+    del_request.onload = function() {
+      const delhi_widget = del_request.response;
+      const del = JSON.parse(delhi_widget);
+      populate_Delhi(del);
+    }
+function populate_Delhi(jsonObj) {
+  const del_weekly = jsonObj['daily'];
+    for(let i = 0; i < del_weekly.length; i++) {
+      const weekDiv = document.createElement('div');
+      const weekSpan = document.createElement('span');
+
+      weekSpan.textContent = `Day: ${i} ${del_weekly[i].temp.day}`;
+      weekDiv.appendChild(weekSpan);
+      delhi_block.appendChild(weekDiv);
+    }
 }
 
   RunAllapi();
@@ -361,7 +392,6 @@ function populatewidget(jsonObj) {
       if (mum_request.status === 200) {
 
         let mum_daily_temp_day1 = mum_request.response.daily[0].temp.day;
-        console.log(mum_daily_temp_day1);
         let set = document.getElementById("mum_daily_temp").innerHTML = mum_daily_temp_day1;
 
         //Lame code 
@@ -399,7 +429,6 @@ function populatewidget(jsonObj) {
       if (del_request.status === 200) {
 
         let del_daily_temp_day1 = del_request.response.daily[0].temp.day;
-        console.log(del_daily_temp);
         document.getElementById("del_daily_temp").innerHTML = del_daily_temp_day1;
       } else {
         console.log('Network request failed with response ' + del_request.status + ': ' + del_request.statusText)
@@ -419,7 +448,6 @@ function populatewidget(jsonObj) {
       if (ben_request.status === 200) {
 
         let beng_daily_temp_day1 = ben_request.response.daily[0].temp.day;
-        console.log(beng_daily_temp);
         document.getElementById("beng_daily_temp").innerHTML = beng_daily_temp_day1;
       } else {
         console.log('Network request failed with response ' + ben_request.status + ': ' + ben_request.statusText)
@@ -439,7 +467,6 @@ function populatewidget(jsonObj) {
       if (kol_request.status === 200) {
 
         let kolkata_daily_temp_day1 = kol_request.response.daily[0].temp.day;
-        console.log(kolkata_daily_temp);
         document.getElementById("kolkata_daily_temp").innerHTML = kolkata_daily_temp_day1;
       } else {
         console.log('Network request failed with response ' + kol_request.status + ': ' + kol_request.statusText)
@@ -459,7 +486,6 @@ function populatewidget(jsonObj) {
       if (chen_request.status === 200) {
 
         let chennai_daily_temp_day1 = chen_request.response.daily[0].temp.day;
-        console.log(chennai_daily_temp);
         document.getElementById("chennai_daily_temp").innerHTML = chennai_daily_temp_day1;
       } else {
         console.log('Network request failed with response ' + chen_request.status + ': ' + chen_request.statusText)
