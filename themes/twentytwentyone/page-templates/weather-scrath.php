@@ -40,7 +40,7 @@ get_header(); ?>
     position: relative;
     overflow: hidden;
     width: 270px;
-    height: 270px;
+    height: 300px;
     background-color: white;
     box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
     -webkit-animation: appear 500ms ease-out forwards;
@@ -90,13 +90,14 @@ get_header(); ?>
     position: absolute;
     bottom: 0;
     left: 40px;
+    top: 200px;
   }
 
   h1>span {
     font-size: 45px;
   }
 
-  .mumbai {
+  .sun {
     background: #FFCD41;
     border-radius: 50%;
     box-shadow: rgba(255, 255, 0, 0.1) 0 0 0 4px;
@@ -255,99 +256,54 @@ get_header(); ?>
     }
   }
 </style>
-<header id="mumbai_header">
-</header>
-<section class="widget">
-</section>
-
 <section class="container">
-
-  <div class="weather-wrapper">
-    <div class="weather-card mumbai-card">
-      <div class="weather-icon mumbai"></div>
+<div class="weather-wrapper">
+    <div id="mumbai_city" class="weather-card delhi-card">
+      <div class="weather-icon sun"></div>
       <h1><span id="mum_daily_temp"></span>º</h1>
       <p>Mumbai</p>
-      <details>
+      <details id="mumbai_city_week">
         <summary>Forcast</summary>
-        <div>Monday <span id="mum_monday"> </span></div>
-        <div>Tuesday<span id="mum_tue"> </span></div>
-        <div>Wednesday<span id="mum_wed"> </span></div>
-        <div>Thursday<span id="mum_thu"> </span></div>
-        <div>Friday <span id="mum_fri"></span></div>
-        <div>Saturday<span id="mum_sat"></span></div>
-        <div>Sunday <span id="mum_sun"></span></div>
       </details>
     </div>
-    <div class="weather-card chennai-card">
-      <div class="weather-icon mumbai"></div>
-      <h1><span id="chennai_daily_temp"></span>º</h1>
-      <p>Chennai</p>
-    </div>
-    <div class="weather-card mumbai-card">
-      <div class="weather-icon mumbai"></div>
-      <h1><span id="beng_daily_temp"></span>º</h1>
-      <p>Bengalur</p>
-    </div>
-    <div class="weather-card mumbai-card">
-      <div class="weather-icon mumbai"></div>
-      <h1><span id="kolkata_daily_temp"></span>º</h1>
-      <p>Kolkata</p>
-    </div>
-    <div class="weather-card delhi-card">
-      <div class="weather-icon delhi"></div>
+    <div id="delhi_city" class="weather-card delhi-card">
+      <div class="weather-icon sun"></div>
       <h1><span id="del_daily_temp"></span>º</h1>
       <p>Delhi</p>
-    </div>
-    <div id="delhi_city" class="weather-card delhi-card">
-      <div class="weather-icon delhi"></div>
-      <h1><span id="del_daily_temp"></span>º</h1>
-      <p>Refactored Delhi</p>
       <details id="delhi_city_week">
         <summary>Forcast</summary>
       </details>
     </div>
-  </div>
+    <div id="chennai_city" class="weather-card delhi-card">
+      <div class="weather-icon sun"></div>
+      <h1><span id="chennai_daily_temp"></span>º</h1>
+      <p>Chennai</p>
+      <details id="chennai_city_week">
+        <summary>Forcast</summary>
+      </details>
+    </div>
+    <div id="bengalur_city" class="weather-card delhi-card">
+      <div class="weather-icon sun"></div>
+      <h1><span id="beng_daily_temp"></span>º</h1>
+      <p>Bengalur</p>
+      <details id="bengalur_city_week">
+        <summary>Forcast</summary>
+      </details>
+    </div>
+    <div id="kolkata_city" class="weather-card delhi-card">
+      <div class="weather-icon sun"></div>
+      <h1><span id="kolkata_daily_temp"></span>º</h1>
+      <p>Kolkata</p>
+      <details id="kolkata_city_week">
+        <summary>Forcast</summary>
+      </details>
+    </div>
+</div>
 </section>
 
 <script>
-const header = document.querySelector('#mumbai_header');
-const section = document.querySelector('.widget');
-let requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=19.0760&lon=72.8777&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
-    let request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    request.responseType = 'text';
-    request.send();
+// API Calls
 
-    request.onload = function() {
-      const mumbai_widget = request.response;
-      const bombay = JSON.parse(mumbai_widget);
-      populateTodaywidget(bombay);
-      populatewidget(bombay);
-    }
-function populateTodaywidget(jsonObj) {
-  const myH1 = document.createElement('h1');
-      myH1.textContent = jsonObj['timezone'];
-      header.appendChild(myH1);
-
-      const myPara = document.createElement('p');
-      myPara.textContent = 'timezone_offset: ' + jsonObj['timezone_offset'] + ' // timezone: ' + jsonObj['timezone'];
-      header.appendChild(myPara);
-}
-function populatewidget(jsonObj) {
-  const mumbai_weekly = jsonObj['daily'];
-
-      for(let i = 0; i < mumbai_weekly.length; i++) {
-        const myArticle = document.createElement('article');
-        const myH2 = document.createElement('h2');
-
-        myH2.textContent = mumbai_weekly[i].temp.day;
-        myArticle.appendChild(myH2);
-        section.appendChild(myArticle);
-      }
-
-}
-
-//Delhi refactored
 const delhi_block = document.querySelector('#delhi_city_week');
 let delhi_requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=28.70410&lon=77.1025&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
     let del_request = new XMLHttpRequest();
@@ -358,17 +314,126 @@ let delhi_requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=28.7
       const delhi_widget = del_request.response;
       const del = JSON.parse(delhi_widget);
       populate_Delhi(del);
+      console.log(del);
     }
-function populate_Delhi(jsonObj) {
-  const del_weekly = jsonObj['daily'];
-    for(let i = 0; i < del_weekly.length; i++) {
-      const weekDiv = document.createElement('div');
-      const weekSpan = document.createElement('span');
 
-      weekSpan.textContent = `Day: ${i} ${del_weekly[i].temp.day}`;
-      weekDiv.appendChild(weekSpan);
-      delhi_block.appendChild(weekDiv);
+    //Mumbai
+    const mumbai_block = document.querySelector('#mumbai_city_week');
+let mumbai_requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=19.0760&lon=72.8777&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
+    let mum_request = new XMLHttpRequest();
+    mum_request.open('GET', mumbai_requestURL);
+    mum_request.responseType = 'text';
+    mum_request.send();
+    mum_request.onload = function() {
+      const mumbai_widget = mum_request.response;
+      const mum = JSON.parse(mumbai_widget);
+      populate_Mumbai(mum);
+      console.log(mum);
     }
+
+    //Chennai
+    const chennai_block = document.querySelector('#chennai_city_week');
+let chennai_requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=13.0827&lon=80.2707&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
+    let chen_request = new XMLHttpRequest();
+    chen_request.open('GET', chennai_requestURL);
+    chen_request.responseType = 'text';
+    chen_request.send();
+    chen_request.onload = function() {
+      const chennai_widget = chen_request.response;
+      const chen = JSON.parse(chennai_widget);
+      populate_Chennai(chen);
+      console.log(chen);
+    }
+
+    //Bengalur
+    const bengalur_block = document.querySelector('#bengalur_city_week');
+let bengalur_requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=12.9716&lon=77.5946&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
+    let beng_request = new XMLHttpRequest();
+    beng_request.open('GET', bengalur_requestURL);
+    beng_request.responseType = 'text';
+    beng_request.send();
+    beng_request.onload = function() {
+      const bengalur_widget = beng_request.response;
+      const beng = JSON.parse(bengalur_widget);
+      populate_Bengalur(beng);
+      console.log(beng);
+    }
+    //Kolkata
+    const kolkata_block = document.querySelector('#kolkata_city_week');
+let kolkata_requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=22.5726&lon=88.3639&exclude=current,hourly,minutely,alerts&units=metric&appid=8ab4ba3378ee2851102d5840b08d4c7a';
+    let kolk_request = new XMLHttpRequest();
+    kolk_request.open('GET', kolkata_requestURL);
+    kolk_request.responseType = 'text';
+    kolk_request.send();
+    kolk_request.onload = function() {
+      const kolkata_widget = kolk_request.response;
+      const kol = JSON.parse(kolkata_widget);
+      populate_Kolkata(kol);
+      console.log(kol);
+    }
+
+
+    function populate_Delhi(djsonObj) {
+      const del_weekly = djsonObj['daily'];
+      for(let i = 0; i < del_weekly.length; i++) {
+        const weekDiv = document.createElement('div');
+        const weekSpan = document.createElement('span');
+
+        weekSpan.textContent = `Day: ${i} ${del_weekly[i].temp.day}º`;
+        weekDiv.appendChild(weekSpan);
+        delhi_block.appendChild(weekDiv);
+      }
+}
+
+function populate_Mumbai(mjsonObj) {
+  const mum_weekly = mjsonObj['daily'];
+      for(let j = 0; j < mum_weekly.length; j++) {
+        const mweekDiv = document.createElement('div');
+        const mweekSpan = document.createElement('span');
+
+        mweekSpan.textContent = `Day: ${j} ${mum_weekly[j].temp.day}º`;
+        mweekDiv.appendChild(mweekSpan);
+        mumbai_block.appendChild(mweekDiv);
+      }
+
+}
+function populate_Chennai(cjsonObj) {
+  const chen_weekly = cjsonObj['daily'];
+      for(let k = 0; k < chen_weekly.length; k++) {
+        const cweekDiv = document.createElement('div');
+        const cweekSpan = document.createElement('span');
+
+        cweekSpan.textContent = `Day: ${k} ${chen_weekly[k].temp.day}º`;
+        cweekDiv.appendChild(cweekSpan);
+        chennai_block.appendChild(cweekDiv); 
+      }
+
+}
+function populate_Bengalur(bjsonObj) {
+  const beng_weekly = bjsonObj['daily'];
+      for(let l = 0; l < beng_weekly.length; l++) {
+        const bweekDiv = document.createElement('div');
+        const bweekSpan = document.createElement('span');
+
+        bweekSpan.textContent = `Day: ${l} ${beng_weekly[l].temp.day}º`;
+        bweekDiv.appendChild(bweekSpan);
+        bengalur_block.appendChild(bweekDiv);
+
+      }
+
+}
+function populate_Kolkata(kjsonObj) {
+  const kol_weekly = kjsonObj['daily'];
+      for(let m = 0; m < kol_weekly.length; m++) {
+        const kweekDiv = document.createElement('div');
+        const kweekSpan = document.createElement('span');
+
+        kweekSpan.textContent = `Day: ${m} ${kol_weekly[m].temp.day}º`;
+        kweekDiv.appendChild(kweekSpan);
+        kolkata_block.appendChild(kweekDiv);
+
+      }
+
 }
 
   RunAllapi();
@@ -393,24 +458,6 @@ function populate_Delhi(jsonObj) {
 
         let mum_daily_temp_day1 = mum_request.response.daily[0].temp.day;
         let set = document.getElementById("mum_daily_temp").innerHTML = mum_daily_temp_day1;
-
-        //Lame code 
-        let mum_daily_temp_monday = mum_request.response.daily[0].temp.day;
-        let set1 = document.getElementById("mum_monday").innerHTML = mum_daily_temp_monday;
-        let mum_daily_temp_tue = mum_request.response.daily[1].temp.day;
-        let set2 = document.getElementById("mum_tue").innerHTML = mum_daily_temp_tue;
-        let mum_daily_temp_wed = mum_request.response.daily[2].temp.day;
-        let set3 = document.getElementById("mum_wed").innerHTML = mum_daily_temp_wed;
-        let mum_daily_temp_thu = mum_request.response.daily[3].temp.day;
-        let set4 = document.getElementById("mum_thu").innerHTML = mum_daily_temp_thu;
-        let mum_daily_temp_fri = mum_request.response.daily[4].temp.day;
-        let set5 = document.getElementById("mum_fri").innerHTML = mum_daily_temp_fri;
-        let mum_daily_temp_sat = mum_request.response.daily[5].temp.day;
-        let set6 = document.getElementById("mum_sat").innerHTML = mum_daily_temp_sat;
-        let mum_daily_temp_sun = mum_request.response.daily[6].temp.day;
-        let set7 = document.getElementById("mum_sun").innerHTML = mum_daily_temp_sun;
-
-
       } else {
         console.log('Network request failed with response ' + mum_request.status + ': ' + mum_request.statusText)
       }
