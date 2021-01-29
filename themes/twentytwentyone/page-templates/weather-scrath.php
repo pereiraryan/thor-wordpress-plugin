@@ -258,47 +258,53 @@ get_header(); ?>
 </style>
 <section class="container">
 <div class="weather-wrapper">
-    <div id="mumbai_city" class="weather-card delhi-card">
-      <div class="weather-icon sun"></div>
-      <h1><span id="mum_daily_temp"></span>º</h1>
-      <p>Mumbai</p>
-      <details id="mumbai_city_week">
-        <summary>Forcast</summary>
-      </details>
-    </div>
-    <div id="delhi_city" class="weather-card delhi-card">
-      <div class="weather-icon sun"></div>
-      <h1><span id="del_daily_temp"></span>º</h1>
-      <p>Delhi</p>
-      <details id="delhi_city_week">
-        <summary>Forcast</summary>
-      </details>
-    </div>
-    <div id="chennai_city" class="weather-card delhi-card">
-      <div class="weather-icon sun"></div>
-      <h1><span id="chennai_daily_temp"></span>º</h1>
-      <p>Chennai</p>
-      <details id="chennai_city_week">
-        <summary>Forcast</summary>
-      </details>
-    </div>
-    <div id="bengalur_city" class="weather-card delhi-card">
-      <div class="weather-icon sun"></div>
-      <h1><span id="beng_daily_temp"></span>º</h1>
-      <p>Bengalur</p>
-      <details id="bengalur_city_week">
-        <summary>Forcast</summary>
-      </details>
-    </div>
-    <div id="kolkata_city" class="weather-card delhi-card">
-      <div class="weather-icon sun"></div>
-      <h1><span id="kolkata_daily_temp"></span>º</h1>
-      <p>Kolkata</p>
-      <details id="kolkata_city_week">
-        <summary>Forcast</summary>
-      </details>
-    </div>
-</div>
+            <div id="mumbai_city" class="weather-card delhi-card">
+              <div class="weather-icon sun"></div>
+              <h1><span id="mum_daily_temp"></span>º</h1>
+              <p>Mumbai</p>
+              <details id="mumbai_city_week">
+                <summary>Forcast</summary>
+              </details>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241316.64332790065!2d72.74109997462705!3d19.08252232039457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1611900624696!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0; margin-top: 250px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+            </div>
+            <div id="delhi_city" class="weather-card delhi-card">
+              <div class="weather-icon sun"></div>
+              <h1><span id="del_daily_temp"></span>º</h1>
+              <p>Delhi</p>
+              <details id="delhi_city_week">
+                <summary>Forcast</summary>
+              </details>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448181.16374483565!2d76.81307247147215!3d28.647279934818382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1611900970739!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0; margin-top: 250px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <div id="chennai_city" class="weather-card delhi-card">
+              <div class="weather-icon sun"></div>
+              <h1><span id="chennai_daily_temp"></span>º</h1>
+              <p>Chennai</p>
+              <details id="chennai_city_week">
+                <summary>Forcast</summary>
+              </details>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248755.78021444276!2d80.06892532404781!3d13.047822270295175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1611900997157!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0; margin-top: 250px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <div id="bengalur_city" class="weather-card delhi-card">
+              <div class="weather-icon sun"></div>
+              <h1><span id="beng_daily_temp"></span>º</h1>
+              <p>Bengalur</p>
+              <details id="bengalur_city_week">
+                <summary>Forcast</summary>
+              </details>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.5522455846!2d77.49085307114936!3d12.954294597642471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1611901081829!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0; margin-top: 250px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <div id="kolkata_city" class="weather-card delhi-card">
+              <div class="weather-icon sun"></div>
+              <h1><span id="kolkata_daily_temp"></span>º</h1>
+              <p>Kolkata</p>
+              <details id="kolkata_city_week">
+                <summary>Forcast</summary>
+              </details>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d471218.3856170605!2d88.04953593118715!3d22.676385751131438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1611901103804!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0; margin-top: 250px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+        </div>
 </section>
 
 <script>
