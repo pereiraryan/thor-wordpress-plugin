@@ -442,8 +442,6 @@ function populate_Kolkata(kjsonObj) {
 
 }
 
-  RunAllapi();
-
   function RunAllapi() {
     mumbaiApi();
     delhiApi();
@@ -546,6 +544,7 @@ function populate_Kolkata(kjsonObj) {
     };
     chen_request.send();
   }
+  RunAllapi();
 </script>
 <?php
 get_footer();
